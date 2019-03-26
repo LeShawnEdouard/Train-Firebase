@@ -44,3 +44,55 @@ $("#add-train-btn").on("click", function(event) {
 });
 
 
+database.ref().on("child_added", function(childSnapshot) {
+    console.log(childSnapshot.val());
+
+
+
+    var trainName = childSnapshot.val().name;
+    var destination = childSnapshot.val().desti;
+    var trainTime = childSnapshot.val().time;
+    var frequency = childSnapshot.val().rate;
+
+
+    console.log(trainName);
+    console.log(destination);
+    console.log(trainTime);
+    console.log(frequency);
+
+    var tFrequency = 5;
+
+
+    var firstTime = "05:30";
+
+
+    var firstTimeConverted = moment(firstTime, "HH:mm").subtract(1, "years");
+    console.log(firstTimeConverted);
+
+
+
+    var currentTime = moment();
+    console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
+
+
+
+    var diffTime = momment().diff(moment(firstTimeConverted), "minutes");
+
+
+    var 
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+})
