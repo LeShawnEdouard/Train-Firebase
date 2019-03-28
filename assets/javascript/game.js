@@ -1,4 +1,4 @@
-
+$(document).ready(function() {
 var config = {
   apiKey: "AIzaSyCCGquCQzFe8bddfYtyw6WlBUuh3DuPjOY",
   authDomain: "train-scheduler-6b3c6.firebaseapp.com",
@@ -9,7 +9,7 @@ var config = {
 };
 firebase.initializeApp(config);
 
-var database = firebase(config);
+var database = firebase.database();
 
 $("#add-train-btn").on("click", function(event) {
     event.preventDefault();
@@ -60,14 +60,19 @@ database.ref().on("child_added", function(childSnapshot) {
     console.log(trainTime);
     console.log(frequency);
 
+
+
+
+
+
     var tFrequency = 5;
 
 
-    var firstTime = "05:30";
+    // var firstTime = "";
 
 
-    var firstTimeConverted = moment(firstTime, "HH:mm").subtract(1, "years");
-    console.log(firstTimeConverted);
+    var firstTimeConverted = moment(trainTime, "HH:mm").subtract(1, "years");
+    console.log(firstTimeConverted, "first time converted");
 
 
 
@@ -76,13 +81,29 @@ database.ref().on("child_added", function(childSnapshot) {
 
 
 
-    var diffTime = momment().diff(moment(firstTimeConverted), "minutes");
+    // var diffTime = moment().diff(firstTimeConverted, "minutes");
+    var diffTime = moment().diff(moment(trainTime, "X"), "minutes");
+
+    console.log(diffTime, "dif time");
+
+    var tRemainder = diffTime % tFrequency;
 
 
-    var 
+    var tMinutesTillTrain = tFrequency - tRemainder;
 
 
-    
+    var nextTrain = moment().add(tMinutesTillTrain, "minutes");
+
+
+    var newRow = $("<tr>").append(
+        $("<td>").text(trainName),
+        $("<td>").text(destination),
+        $("<td>").text(trainTime),
+        $("<td>").text(frequency)
+    );
+
+
+    $("#train-table > tbody").append(newRow);
 
 
 
@@ -93,6 +114,6 @@ database.ref().on("child_added", function(childSnapshot) {
 
 
 
-
+});
 
 })
