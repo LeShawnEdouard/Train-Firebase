@@ -1,4 +1,4 @@
-$(document).ready(function)
+$(document).ready(function() {
 var config = {
   apiKey: "AIzaSyCCGquCQzFe8bddfYtyw6WlBUuh3DuPjOY",
   authDomain: "train-scheduler-6b3c6.firebaseapp.com",
@@ -68,11 +68,11 @@ database.ref().on("child_added", function(childSnapshot) {
     var tFrequency = 5;
 
 
-    var firstTime = "05:30";
+    // var firstTime = "";
 
 
-    var firstTimeConverted = moment(firstTime, "HH:mm").subtract(1, "years");
-    console.log(firstTimeConverted);
+    var firstTimeConverted = moment(trainTime, "HH:mm").subtract(1, "years");
+    console.log(firstTimeConverted, "first time converted");
 
 
 
@@ -81,8 +81,10 @@ database.ref().on("child_added", function(childSnapshot) {
 
 
 
-    var diffTime = momment().diff(moment(firstTimeConverted), "minutes");
+    // var diffTime = moment().diff(firstTimeConverted, "minutes");
+    var diffTime = moment().diff(moment(trainTime, "X"), "minutes");
 
+    console.log(diffTime, "dif time");
 
     var tRemainder = diffTime % tFrequency;
 
@@ -113,3 +115,5 @@ database.ref().on("child_added", function(childSnapshot) {
 
 
 });
+
+})
