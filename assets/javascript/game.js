@@ -98,8 +98,8 @@ database.ref().on("child_added", function(childSnapshot) {
     var newRow = $("<tr>").append(
         $("<td>").text(trainName),
         $("<td>").text(destination),
+        $("<td>").text(frequency),
         $("<td>").text(trainTime),
-        $("<td>").text(frequency)
     );
 
 
