@@ -100,20 +100,11 @@ database.ref().on("child_added", function(childSnapshot) {
         $("<td>").text(destination),
         $("<td>").text(frequency),
         $("<td>").text(trainTime),
+        $("<td>").text(tMinutesTillTrain)
     );
 
 
     $("#train-table > tbody").append(newRow);
-
-
-
-
-
-
-
-
-
-
 });
 
 })
